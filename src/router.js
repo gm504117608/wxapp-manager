@@ -1,13 +1,23 @@
 import React from 'react';
 import { Router, Route } from 'dva/router';
-import IndexPage from './routes/IndexPage';
+// import IndexPage from './routes/IndexPage';
+import Login from './routes/login/Login';
 
-function RouterConfig({history}) {
-    return (
-        <Router history={history}>
-    	  <Route path="/" component={IndexPage} />
-   		</Router>
-    );
+
+// function RouterConfig({history}) {
+//     return (
+//         <Router history={history}>
+//     	  <Route path="/" component={Login} />
+//    		</Router>
+//     );
+// }
+
+const RouterConfig = ({history}) => {
+  return (
+    <Router history={history}>
+      <Route path="/" component={Login} />
+    </Router>
+  );
 }
 
 export default RouterConfig;

@@ -1,5 +1,6 @@
 {
   "entry": "src/index.js",
+  "disableCSSModules": true, // 是否忽略css modules 不忽略（true） 忽略（false）
   "env": {
     "development": {
       "extraBabelPlugins": [
@@ -10,6 +11,7 @@
     },
     "production": {
       "extraBabelPlugins": [
+        "dva-hmr",
         "transform-runtime",
         ["import", { "libraryName": "antd", "style": "css" }]
       ]
