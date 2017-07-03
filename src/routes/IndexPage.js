@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { Layout } from 'antd';
 import SiderCustom from '../components/SiderCustom';
 import HeaderCustom from '../components/HeaderCustom';
-import styles from './IndexPage.css';
+import './IndexPage.css';
 
 const {Content, Footer} = Layout;
 

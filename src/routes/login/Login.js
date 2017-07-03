@@ -14,7 +14,10 @@ class LoginComponent extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-                dispatch({
+                console.log(this);
+                console.log(this.props);
+
+                this.props.dispatch({
                     type: 'api/login',
                     payload: values
                 });
@@ -92,11 +95,4 @@ class LoginComponent extends React.Component {
 
 const Login = Form.create()(LoginComponent);
 
-function mapStateToProps(state) {
-    return {
-        state
-    };
-}
-;
-
-export default connect(mapStateToProps)(Login);
+export default connect()(Login);
