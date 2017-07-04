@@ -1,6 +1,6 @@
 {
   "entry": "src/index.js",
-  "disableCSSModules": true, // 是否忽略css modules 不忽略（true） 忽略（false）
+  "disableCSSModules": false, // 是否忽略css modules 不忽略（true） 忽略（false）
   "env": {
     "development": {
       "extraBabelPlugins": [
@@ -16,5 +16,13 @@
         ["import", { "libraryName": "antd", "style": "css" }]
       ]
     }
-  }
+  },
+  "proxy": {
+    "/api": {
+        "target": "http://localhost:8080/api/",
+        "changeOrigin": true,
+        "pathRewrite": { "^/api": "" }  
+     }
+  },
+  "theme": "./src/theme.js"
 }

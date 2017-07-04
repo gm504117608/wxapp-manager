@@ -1,11 +1,17 @@
+'use strict';
+
 import React from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import { connect } from 'dva';
-import './Login.css';
+import { Link } from 'dva/router';
+import styles from './Login.css';
+import LoginLayout from '../../components/LoginLayout/LoginLayout';
+import blogLogo from '../../assets/dog_48px_1182381_easyicon.net.png';
+
 
 const FormItem = Form.Item;
 
-class LoginComponent extends React.Component {
+class Login extends React.Component {
     /**
      处理表单提交
      */
@@ -17,82 +23,68 @@ class LoginComponent extends React.Component {
                 console.log(this);
                 console.log(this.props);
 
+                message.success('Log in successfully :)');
+
                 this.props.dispatch({
-                    type: 'api/login',
+                    type: 'app/auth',
                     payload: values
                 });
             }
         });
     };
 
-    gitHub = () => {
-        location.href = 'https://www.baidu.com';
-    };
-
     render() {
         const {getFieldDecorator} = this.props.form;
 
         return (
-            <div className="login">
-        <div className="login-form">
-          <div className="login-logo">
-            <span>React Admin</span>
-          </div>
-          <Form onSubmit={this.handleSubmit} style={{
-                maxWidth: '300px'
-            }}>
-            <FormItem>
-              {
-            getFieldDecorator('userName', {
-                rules: [{
-                    required: true,
-                    message: '请输入用户名!'
-                }],
-            })(
-                <Input prefix={<Icon type="user" style={{
-                    fontSize: 13
-                }}/>} placeholder="用户名"/>)
-            }
-            </FormItem>
-            <FormItem>
-              {
-            getFieldDecorator('password', {
-                rules: [{
-                    required: true,
-                    message: '请输入密码!'
-                }],
-            })(
-                <Input prefix={<Icon type="lock" style={{
-                    fontSize: 13
-                }}/>} type="password" placeholder="密码"/>)
-            }
-            </FormItem>
-            <FormItem>
-              {
-            getFieldDecorator('remember', {
-                valuePropName: 'checked',
-                initialValue: true,
-            })(
-                <Checkbox>记住我</Checkbox>
-            )}
-              <a className="login-form-forgot" href="" style={{
-                float: 'right'
-            }}>忘记密码</a>
-              <Button type="primary" htmlType="submit" className="login-form-button" style={{
-                width: '100%'
-            }}> 登录 </Button>
-                或 <a href="">现在就去注册!</a>
-              <p>
-                <Icon type="github" onClick={this.gitHub}/>(第三方登录)
-              </p>
-            </FormItem>
-          </Form>
-        </div>
-      </div>
+            <LoginLayout>
+                <div className={styles.container}>
+                    <div className={styles.logo}>
+                        <img className={styles.logoImg} src={blogLogo} alt="my blog"/>
+                        <span>My GuoNiMa!</span>
+                    </div>
+                    <Form onSubmit={this.handleSubmit} >
+                        <FormItem>
+                        {
+                            getFieldDecorator('userName', {
+                                rules: [{
+                                    required: true,
+                                    message: '请输入用户名!'
+                                }],
+                            })
+                            (<Input prefix={<Icon type="user" />} placeholder="用户名"/>)
+                        }
+                        </FormItem>
+                        <FormItem>
+                        {
+                            getFieldDecorator('password', {
+                                rules: [{
+                                    required: true,
+                                    message: '请输入密码!'
+                                }],
+                            })
+                            (<Input prefix={<Icon type="lock"/>} type="password" placeholder="密码"/>)
+                        }
+                        </FormItem>
+                        <FormItem>
+                        {
+                            getFieldDecorator('remember', {
+                                valuePropName: 'checked',
+                                initialValue: true,
+                            }) 
+                            (<Checkbox disabled>记住我</Checkbox>)
+                        }
+                        <span className={styles.toOther}>Or <Link to="/register">register now!</Link></span>
+                        <Button type="primary" htmlType="submit" className={styles.button}>
+                            登录
+                        </Button>
+                        </FormItem>
+                     </Form>
+                </div>
+            </LoginLayout>
         );
     }
 }
 
-const Login = Form.create()(LoginComponent);
 
-export default connect()(Login);
+export default connect()(Form.create()(Login));
