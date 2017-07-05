@@ -1,9 +1,9 @@
 'use strict';
 
-import { auth, register } from '../services/app';
+import { auth, register } from '../services/user';
 import { storageTokenKey } from '../utils/constant';
-import {stringify} from 'qs';
-import {message} from 'antd';
+import { stringify } from 'qs';
+import { message } from 'antd';
 
 
 const loginModels = {
@@ -11,7 +11,7 @@ const loginModels = {
     state: {
         isLogin: false,
         account: {
-            username: null,
+            userName: null,
             ability: null,
             user_id: null,
             email: null
@@ -38,20 +38,21 @@ const loginModels = {
             const {userName, password} = payload;
             try {
                 const result = yield call(auth, { userName, password });
+                console.log(result);
                 // succeed to login
                 if (result) {
-                    const {user, access_token} = result;
-                    const {token} = access_token;
+                    const {code, data} = result;
+                    const {managerDO, token} = data;
                     // save the token to the local storage.
                     window.localStorage.setItem(storageTokenKey, token);
                     yield put({
                         type: 'authSuccess',
-                        payload: {account: user}
+                        payload: {account: managerDO}
                     });
                     yield put(routerRedux.push('/posts'));
                 }
             } catch (error) {
-                message.error('Wrong Username or Password.. :(', 4);
+                message.error('Wrong userName or Password.. :(', 4);
             }
         },
 
@@ -63,17 +64,17 @@ const loginModels = {
             console.log(put);
             console.log(select);
 
-            const {username, email, password} = payload;
+            const {userName, email, password} = payload;
             try {
-                const result = yield call(register, { username, email, password });
+                const result = yield call(register, { userName, email, password });
                 if (result) {
                     yield put({
                         type: 'auth',
-                        payload: {username, password}
+                        payload: {userName, password}
                     });
                 }
             } catch (error) {
-                message.error('Wrong Username or Password.. :(', 4);
+                message.error('Wrong userName or Password.. :(', 4);
             }
         },
     },

@@ -23,8 +23,6 @@ class Login extends React.Component {
                 console.log(this);
                 console.log(this.props);
 
-                message.success('Log in successfully :)');
-
                 this.props.dispatch({
                     type: 'app/auth',
                     payload: values
