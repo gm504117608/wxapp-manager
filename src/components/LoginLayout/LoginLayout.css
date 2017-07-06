@@ -28,10 +28,3 @@
   box-shadow: 0 0 100px rgba(0, 0, 0, .08);
 }
 
-.footer {
-  position: fixed;
-  text-align: left;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}

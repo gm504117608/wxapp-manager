@@ -7,6 +7,7 @@ import { Link } from 'react-router';
 
 const {Sider} = Layout;
 const SubMenu = Menu.SubMenu;
+const MenuItem = Menu.Item;
 
 class SiderCustom extends Component {
     state = {
@@ -18,18 +19,18 @@ class SiderCustom extends Component {
             <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
                 <div className="logo" />
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                    <Menu.Item key="1">
+                    <MenuItem key="1">
                     <Icon type="user" />
                     <span className="nav-text">nav 1</span>
-                 </Menu.Item>
-                <Menu.Item key="2">
+                 </MenuItem>
+                <MenuItem key="2">
                     <Icon type="video-camera" />
                     <span className="nav-text">nav 2</span>
-                </Menu.Item>
-                <Menu.Item key="3">
+                </MenuItem>
+                <MenuItem key="3">
                     <Icon type="upload" />
                     <span className="nav-text">nav 3</span>
-                </Menu.Item>
+                </MenuItem>
                 </Menu>
             </Sider>
         );

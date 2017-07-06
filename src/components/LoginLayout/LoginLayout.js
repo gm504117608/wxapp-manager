@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Layout } from 'antd';
+import FooterLayout from '../FooterLayout/FooterLayout'; 
 import styles from './LoginLayout.css';
 
 const {Content, Footer} = Layout;
@@ -15,9 +16,7 @@ class LoginLayout extends React.Component {
                 <Content className={styles.content}>
                     {this.props.children}
                 </Content>
-                <Footer className={styles.footer}>
-                    <span>@Zhiyu He</span><span>15331097</span>
-                </Footer>
+                <FooterLayout />
             </Layout>
         );
     }

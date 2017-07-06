@@ -49,7 +49,7 @@ const loginModels = {
                         type: 'authSuccess',
                         payload: {account: managerDO}
                     });
-                    yield put(routerRedux.push('/posts'));
+                    yield put(routerRedux.push('/index'));
                 }
             } catch (error) {
                 message.error('Wrong userName or Password.. :(', 4);
