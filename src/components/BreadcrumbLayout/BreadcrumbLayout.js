@@ -6,8 +6,9 @@ import React from 'react';
 import { Breadcrumb, Switch, Icon } from 'antd';
 import { Link } from 'react-router';
 import themes from '../style/theme';
+import styles from '../BreadcrumbLayout.css';
 
-class BreadcrumbCustom extends React.Component {
+class BreadcrumbLayout extends React.Component {
     state = {
         switcherOn: false,
         theme: null,
@@ -105,4 +106,4 @@ class BreadcrumbCustom extends React.Component {
     }
 }
 
-export default BreadcrumbCustom;
+export default BreadcrumbLayout;

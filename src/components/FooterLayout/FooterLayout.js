@@ -13,7 +13,7 @@ class FooterLayout extends React.Component {
 
     render() {
         return ( 
-            <Footer className={styles.Footer}>
+            <Footer className={styles.footer}>
                 <span>Wxapp Manager ©2017 Created by GuoNiMa</span>
             </Footer>
         );
