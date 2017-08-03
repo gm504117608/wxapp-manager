@@ -1,0 +1,17 @@
+.carouselDiv {
+  text-align: center;
+  height: 160px;
+  line-height: 160px;
+  overflow: hidden;
+  background: #364d79;
+}
+
+.color2 {
+	background: #DC143C;
+}
+.color3 {
+	background: #8B008B;
+}
+.color4 {
+	background: #1E90FF;
+}

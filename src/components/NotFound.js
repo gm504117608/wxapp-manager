@@ -1,6 +1,6 @@
 import React from 'react';
 import img from '../assets/404.png';
-
+import styles from './Animation/animate.css';
 
 class NotFound extends React.Component {
 
@@ -16,11 +16,14 @@ class NotFound extends React.Component {
 
 
 	render(){
+		const animateClassName = styles.animated + ' ' + styles.swing + ' ' + styles[this.state.animated];
 		return (
-			<div className="center" style={{height: '100%', background: '#ececec', overflow: 'hidden'}}>
-                <img src={img} alt="404" className={`animated swing ${this.state.animated}`} onMouseEnter={this.enter} />
+			<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', 
+				height: '100%', background: '#ececec', overflow: 'hidden'}}>
+                <img src={img} alt="404" className={ animateClassName } 
+                onMouseEnter={this.enter} />
             </div>
-			);
+		);
 	}
 }
 

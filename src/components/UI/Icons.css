@@ -1,0 +1,36 @@
+ul.anticonsList {
+    list-style: none;
+    overflow: hidden;
+}
+
+ul.anticonsList li {
+    float: left;
+    width: 16.66%;
+    text-align: center;
+    list-style: none;
+    cursor: pointer;
+    height: 100px;
+    color: #555;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    position: relative;
+    margin: 3px 0;
+    border-radius: 4px;
+    background-color: #fff;
+    overflow: hidden;
+    padding: 10px 0 0;
+}
+
+.gutterBox {
+  padding: 25px;
+}
+
+ul.anticonsList li .anticonClass {
+    display: grid;
+    text-align: center;
+    -webkit-transform: scale(.83);
+    -ms-transform: scale(.83);
+    transform: scale(.83);
+    font-family: Lucida Console,Consolas;
+    white-space: nowrap;
+}
