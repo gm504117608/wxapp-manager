@@ -17,7 +17,7 @@ import TableAnimation from './components/Animation/TableAnimation';
 import Echarts from './components/Charts/Echarts';
 import Recharts from './components/Charts/Recharts';
 import BasicTables from './components/Tables/BasicTables';
-
+import AdvancedTables from './components/Tables/AdvancedTables';
 import BasicForm from './routes/form/BasicForm';
 
 const RouterConfig = ({history, app}) => {
@@ -51,6 +51,8 @@ const RouterConfig = ({history, app}) => {
                 </Route>
                 <Route path="table">
                     <Route path="basicTable" component={BasicTables} />
+                    <Route path="advancedTable" component={AdvancedTables} />
+
                 </Route>
             </Route>
             <Route path="*" component={NotFound}/>

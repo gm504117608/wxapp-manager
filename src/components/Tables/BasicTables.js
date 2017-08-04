@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table, Icon, Card, Row, Col } from 'antd';
+import FilterOrderTables from './FilterOrderTables';
 
 const { Column, ColumnGroup } = Table;
 
@@ -7,7 +8,7 @@ const columns = [{
 	title: 'Name',
 	dataIndex: 'name',
 	key: 'name',
-	render: (text) => <a href="#">{text}</a>,
+	render: (text) => <a href='#'>{text}</a>,
 }, {
 	title: 'Age',
 	dataIndex: 'age',
@@ -38,24 +39,24 @@ const dataSource = [{
 	age: 32,
 	address: 'new york no.1 lake park',
 }, {
-  key: '2',
-  name: 'Jim Green',
-  age: 42,
-  address: 'London No. 1 Lake Park',
+  	key: '2',
+  	name: 'Jim Green',
+  	age: 42,
+  	address: 'London No. 1 Lake Park',
 }, {
-  key: '3',
-  name: 'Joe Black',
-  firstName: 'Joe',
-  lastName: 'Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
+  	key: '3',
+  	name: 'Joe Black',
+  	firstName: 'Joe',
+  	lastName: 'Black',
+  	age: 32,
+  	address: 'Sidney No. 1 Lake Park',
 }, {
-  key: '4',
-  name: 'Joe Bank',
-  firstName: 'Joe',
-  lastName: 'Bank',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
+  	key: '4',
+  	name: 'Joe Bank',
+  	firstName: 'Joe',
+  	lastName: 'Bank',
+  	age: 32,
+  	address: 'Sidney No. 1 Lake Park',
 }];
 
 // 循环自动生成数据
@@ -88,12 +89,12 @@ class BasicTables extends React.Component {
 			<Row gutter={16}>
 				<Col span={12}>
 					<Card title="基础表格" border={true}>
-						<Table rowSelection={rowSelection} columns={columns} dataSource={dataSource} />
+						<Table rowSelection={rowSelection} columns={columns} dataSource={data} size="small" />
 					</Card>
 				</Col>
 				<Col span={12}>
 					<Card title="jsx风格表格" border={true} >
-						<Table dataSource={dataSource} bordered >
+						<Table dataSource={dataSource} bordered size="middle">
 						<ColumnGroup title="Name">
 							<Column title="First Name" dataIndex="firstName" key="firstName" />
 							<Column title="Last Name" dataIndex="lastName" key="lastName" />
@@ -115,8 +116,8 @@ class BasicTables extends React.Component {
 			</Row>
 			<Row gutter={16}>
 				<Col span={12}>
-					<Card title="基础表格" border={true}>
-						<Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+					<Card title="可控的筛选和排序" border={true}>
+						<FilterOrderTables />
 					</Card>
 				</Col>
 			</Row>
