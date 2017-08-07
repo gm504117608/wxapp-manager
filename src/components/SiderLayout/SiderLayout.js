@@ -6,7 +6,7 @@ import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router';
 import styles from './SiderLayout.css';
 
-const {Sider} = Layout;
+const { Sider } = Layout;
 
 class SiderLayout extends Component {
     state = {
@@ -16,12 +16,13 @@ class SiderLayout extends Component {
     render() {
         return ( 
             <Sider trigger={null} className={styles.sider} collapsible collapsed={this.state.collapsed}>
-                <Menu theme="white" mode="inline" defaultSelectedKeys={['1']}>
+                <Menu theme="white" mode="inline" defaultSelectedKeys={['dashboard']}>
                     <Menu.Item key="dashboard">
                         <Link to={'/dashboard'}><Icon type="mobile" /><span className="nav-text">首页</span></Link>
                     </Menu.Item>
                     <Menu.SubMenu key="system" title={<span><Icon type="mail" /><span>系统管理</span></span>}>
-                        <Menu.Item key="user"><Link to="/user">用户信息</Link></Menu.Item>
+                        <Menu.Item key="user"><Link to="/user">用户管理</Link></Menu.Item>
+                        <Menu.Item key="menu"><Link to="/menu">菜单管理</Link></Menu.Item>
                         <Menu.Item key="role"><Link to="/role">角色管理</Link></Menu.Item>
                     </Menu.SubMenu>
                     <Menu.SubMenu key="page" title={<span><Icon type="switcher" /><span className="nav-text">页面</span></span>}>
@@ -37,18 +38,18 @@ class SiderLayout extends Component {
                         <Menu.Item key="modals"><Link to={'/ui/modals'}>对话框</Link></Menu.Item>
                         <Menu.Item key="tabs"><Link to={'/ui/tabs'}>标签页</Link></Menu.Item>
                         <Menu.Item key="carousels"><Link to={'/ui/carousels'}>轮播图</Link></Menu.Item>
-                        <Menu.Item key="/app/ui/wysiwyg"><Link to={'/app/ui/wysiwyg'}>富文本</Link></Menu.Item>
-                        <Menu.Item key="/app/ui/drags"><Link to={'/app/ui/drags'}>拖拽</Link></Menu.Item>
-                        <Menu.Item key="/app/ui/gallery"><Link to={'/app/ui/gallery'}>画廊</Link></Menu.Item>
+                        <Menu.Item key="wysiwyg"><Link to={'/ui/wysiwyg'}>富文本</Link></Menu.Item>
+                        <Menu.Item key="drags"><Link to={'/ui/drags'}>拖拽</Link></Menu.Item>
+                        <Menu.Item key="gallery"><Link to={'/ui/gallery'}>画廊</Link></Menu.Item>
                     </Menu.SubMenu>
                     <Menu.SubMenu key="animation" title={<span><Icon type="rocket" /><span className="nav-text">动画</span></span>}>
                         <Menu.Item key="basicAnimations"><Link to={'/animation/basicAnimations'}>基础动画</Link></Menu.Item>
                         <Menu.Item key="tableAnimation"><Link to={'/animation/tableAnimation'}>表格动画</Link></Menu.Item>
                     </Menu.SubMenu>
                     <Menu.SubMenu key="table" title={<span><Icon type="copy" /><span className="nav-text">表格</span></span>} >
-                        <Menu.Item key="basicTable"><Link to={'table/basicTable'}>基础表格</Link></Menu.Item>
-                        <Menu.Item key="advancedTable"><Link to={'table/advancedTable'}>高级表格</Link></Menu.Item>
-                        <Menu.Item key="asynchronousTable"><Link to={'table/asynchronousTable'}>异步表格</Link></Menu.Item>
+                        <Menu.Item key="basicTable"><Link to={'/table/basicTable'}>基础表格</Link></Menu.Item>
+                        <Menu.Item key="advancedTable"><Link to={'/table/advancedTable'}>高级表格</Link></Menu.Item>
+                        <Menu.Item key="asynchronousTable"><Link to={'/table/asynchronousTable'}>异步表格</Link></Menu.Item>
                     </Menu.SubMenu>
                     <Menu.SubMenu key="form" title={<span><Icon type="edit" /><span className="nav-text">表单</span></span>}>
                         <Menu.Item key="basicForm"><Link to={'/form/basicForm'}>基础表单</Link></Menu.Item>
@@ -57,6 +58,9 @@ class SiderLayout extends Component {
                         <Menu.Item key="echarts"><Link to={'/chart/echarts'}>echarts</Link></Menu.Item>
                         <Menu.Item key="recharts"><Link to={'/chart/recharts'}>recharts</Link></Menu.Item>
                     </Menu.SubMenu>
+                    <Menu.Item key="lifecycle">
+                        <Link to={'/lifecycle'}><Icon type="api" /><span className="nav-text">react生命周期</span></Link>
+                    </Menu.Item>
                 </Menu>
             </Sider>
         );

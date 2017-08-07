@@ -68,21 +68,21 @@ class AdvancedTables extends React.Component {
 			<div>
 			<Row gutter={16}>
 				<Col span={12}>
-					<Card title="头固定表格"  border={true}>
+					<Card title="头固定表格"  bordered={true}>
 						<Table columns={columns} dataSource={data} size="small" 
 						pagination={{pageSize: 30}} scroll={{y: 240}}/>
 					</Card>
 				</Col>
 				<Col span={12}>
-					<Card title="列固定表格" border={true} >
+					<Card title="列固定表格" bordered={true} >
 						<Table columns={colFixColumns} dataSource={colFixData} size="small" 
 						pagination={{pageSize: 10}} scroll={{x: 1200}}/>
 					</Card>
 				</Col>
 			</Row>
 			<Row gutter={16}>
-				<Col span={12}>
-					<Card title="可编辑表格" border={true}>
+				<Col span={24}>
+					<Card title="可编辑表格" bordered={true}>
 						<EditTables />
 					</Card>
 				</Col>

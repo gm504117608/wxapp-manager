@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import { Tooltip, Button } from 'antd';
 import styles from './UserInfo.css';

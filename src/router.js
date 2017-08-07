@@ -18,7 +18,9 @@ import Echarts from './components/Charts/Echarts';
 import Recharts from './components/Charts/Recharts';
 import BasicTables from './components/Tables/BasicTables';
 import AdvancedTables from './components/Tables/AdvancedTables';
+import RemoteDataTables from './components/Tables/RemoteDataTables';
 import BasicForm from './routes/form/BasicForm';
+import StateLifecycle from './components/StateLifecycle';
 
 const RouterConfig = ({history, app}) => {
 
@@ -30,6 +32,7 @@ const RouterConfig = ({history, app}) => {
                 <IndexRedirect to="dashboard" />
                 <Route path="dashboard" component={Dashboard} />
                 <Route path="shop" component={Shop} />
+                <Route path="lifecycle" component={StateLifecycle} />
                 <Route path="form" component={BasicForm}>
                     <Route path="basicForm" component={BasicForm} />
                 </Route>
@@ -52,7 +55,7 @@ const RouterConfig = ({history, app}) => {
                 <Route path="table">
                     <Route path="basicTable" component={BasicTables} />
                     <Route path="advancedTable" component={AdvancedTables} />
-
+                    <Route path="asynchronousTable" component={RemoteDataTables} />
                 </Route>
             </Route>
             <Route path="*" component={NotFound}/>

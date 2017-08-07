@@ -23,17 +23,13 @@ class HeaderLayout extends Component {
           <Affix offsetTop={0}>
                 <Header className={styles.header}>
                     <div className={styles.mainContainer}>
-                        <UserInfo account={this.state.user} handleClickLogout={this.handleClickLogout}/>
+                        <UserInfo account={this.state.user} handleClickLogout={this.handleClickLogout} />
                         <Menu mode="horizontal" defaultSelectedKeys={['1']} className={styles.menu}>
                             <Menu.Item key="1">
-                                <Link to="/posts">
-                                    <Icon type="file-text" className={styles.icon}/>Posts
-                                </Link>
+                                <Link to="/posts"><Icon type="file-text" />Posts</Link>
                             </Menu.Item>
                             <Menu.Item key="2">
-                                <Link to={`/user/${this.state.user}`}>
-                                    <Icon type="user" className={styles.icon}/>User
-                                </Link>
+                                <Link to={`/user/${this.state.user}`}><Icon type="user" />User</Link>
                             </Menu.Item>
                         </Menu>
                     </div>
