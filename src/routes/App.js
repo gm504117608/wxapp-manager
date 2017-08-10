@@ -5,6 +5,7 @@ import SiderLayout from '../components/SiderLayout/SiderLayout';
 import FooterLayout from '../components/FooterLayout/FooterLayout';
 import HeaderLayout from '../components/HeaderLayout/HeaderLayout';
 import styles from './App.css';
+import { menuModels } from '../models/menu';
 
 const { Content } = Layout;
 
@@ -14,11 +15,21 @@ class App extends React.Component {
         collapsed: false,
     };
 
+    constructor(props) {
+        super(props);
+
+        // this.props.dispatch({
+        //     type: 'menu/getAllMenus',
+        //     payload: {}
+        // });
+    }
+
     toggle = () => {
         this.setState({
             collapsed: !this.state.collapsed,
         });
     };
+
 
     render() {
         return (
@@ -26,7 +37,7 @@ class App extends React.Component {
                 <HeaderLayout toggle={this.toggle} />
                 <Row gutter={8} style={{ marginLeft: 0, marginRight: 0 }}>
                     <Col span={6}>
-                        <SiderLayout />
+                        <SiderLayout/>
                     </Col>
                     <Col span={18}>
                         <Content className={styles.content}>

@@ -13,6 +13,7 @@ const app = dva({
 // 3. Model
 // app.model(require('./models/example'));
 app.model(require('./models/app'));
+app.model(require('./models/menu'));
 
 // 4. Router
 app.router(require('./router'));
