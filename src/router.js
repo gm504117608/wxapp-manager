@@ -20,6 +20,7 @@ import BasicTables from './components/Tables/BasicTables';
 import AdvancedTables from './components/Tables/AdvancedTables';
 import RemoteDataTables from './components/Tables/RemoteDataTables';
 import BasicTrees from './components/Trees/BasicTrees';
+import MenuSystem from './components/System/MenuSystemList';
 import BasicForm from './routes/form/BasicForm';
 import StateLifecycle from './components/StateLifecycle';
 
@@ -57,6 +58,9 @@ const RouterConfig = ({history, app}) => {
                     <Route path="basicTable" component={BasicTables} />
                     <Route path="advancedTable" component={AdvancedTables} />
                     <Route path="asynchronousTable" component={RemoteDataTables} />
+                </Route>
+                <Route path="system">
+                    <Route path="menu" component={MenuSystem} />
                 </Route>
                 <Route path="tree" component={BasicTrees} />
             </Route>
