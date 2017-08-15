@@ -35,7 +35,7 @@ const RouterConfig = ({history, app}) => {
                 <Route path="dashboard" component={Dashboard} />
                 <Route path="shop" component={Shop} />
                 <Route path="lifecycle" component={StateLifecycle} />
-                <Route path="form" component={BasicForm}>
+                <Route path="form">
                     <Route path="basicForm" component={BasicForm} />
                 </Route>
                 <Route path="ui">

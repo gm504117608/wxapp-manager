@@ -1,5 +1,3 @@
-'use strict';
-
 import request from '../utils/request';
 import { storageTokenKey } from '../utils/constant';
 
@@ -10,15 +8,7 @@ export function auth(values) {
     console.log("services auth");
     console.log(values);
 
-    return request('/api/manager/login', {
-        method: 'post',
-        headers: new Headers({
-            "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
-        }),
-        body: stringify({
-            ...values
-        })
-    });
+    return request('/api/login?mobile=' + values.mobile + '&password=' + values.password);
 }
 
 /*

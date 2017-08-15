@@ -1,9 +1,8 @@
-'use strict';
-
 import { auth, register } from '../services/user';
 import { storageTokenKey } from '../utils/constant';
 import { stringify } from 'qs';
 import { message } from 'antd';
+import {routerRedux} from 'dva/router';
 
 
 const loginModels = {
@@ -30,29 +29,30 @@ const loginModels = {
         // payload 表单元素数据集合
         *auth({payload}, {call, put, select}) {
             console.log("login");
-            console.log(payload);
-            console.log(call);
-            console.log(put);
-            console.log(select);
+            console.log("payload", payload);
+            console.log("call", call);
+            console.log("put", put);
+            console.log("select", select);
 
-            const {userName, password} = payload;
+            const {mobile, password} = payload;
             try {
-                const result = yield call(auth, { userName, password });
+                const result = yield call(auth, { mobile, password });
                 console.log(result);
                 // succeed to login
                 if (result) {
                     const {code, data} = result;
-                    const {managerDO, token} = data;
+                    const {manager, token} = data;
                     // save the token to the local storage.
                     window.localStorage.setItem(storageTokenKey, token);
                     yield put({
                         type: 'authSuccess',
-                        payload: {account: managerDO}
+                        payload: {account: manager}
                     });
-                    yield put(routerRedux.push('/index'));
+                    dispatch(routerRedux.push('/dashboard'));
                 }
             } catch (error) {
-                message.error('Wrong userName or Password.. :(', 4);
+                console.log(error);
+                message.error('Wrong Mobile or Password...', 4);
             }
         },
 
@@ -89,7 +89,6 @@ const loginModels = {
                 ...state,
                 account,
                 isLogin: true
-
             };
         },
     },
