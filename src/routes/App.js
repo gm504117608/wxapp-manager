@@ -1,9 +1,9 @@
 import React from 'react';
 import { Layout, BackTop, Row, Col  } from 'antd';
 import { connect } from 'dva';
-import SiderLayout from '../components/SiderLayout/SiderLayout';
-import FooterLayout from '../components/FooterLayout/FooterLayout';
-import HeaderLayout from '../components/HeaderLayout/HeaderLayout';
+import SiderLayout from '../components/siderLayout/SiderLayout';
+import FooterLayout from '../components/footerLayout/FooterLayout';
+import HeaderLayout from '../components/headerLayout/HeaderLayout';
 import styles from './App.css';
 import { menuModels } from '../models/menu';
 
@@ -17,11 +17,6 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-
-        // this.props.dispatch({
-        //     type: 'menu/getAllMenus',
-        //     payload: {}
-        // });
     }
 
     toggle = () => {

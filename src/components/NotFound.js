@@ -1,6 +1,6 @@
 import React from 'react';
 import img from '../assets/404.png';
-import styles from './Animation/animate.css';
+import styles from './animation/animate.css';
 
 class NotFound extends React.Component {
 

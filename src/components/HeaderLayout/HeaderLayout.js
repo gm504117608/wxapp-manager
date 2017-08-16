@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon, Affix } from 'antd';
 import { Link } from 'dva/router';
-import UserInfo from './UserInfo/UserInfo';
+import UserInfo from './userInfo/UserInfo';
 import avater from '../../assets/genji.jpg';
 import styles from './HeaderLayout.css';
 

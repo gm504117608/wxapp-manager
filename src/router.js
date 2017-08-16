@@ -5,23 +5,24 @@ import Login from './routes/login/Login';
 import Register from './routes/register/Register';
 import Shop from './routes/shop/Shop';
 import Dashboard from './routes/dashboard/Dashboard';
+import BasicForm from './routes/form/BasicForm';
 import NotFound from './components/NotFound';
 import Icons from './components/UI/Icons';
-import Buttons from './components/UI/Button/Buttons';
-import Modals from './components/UI/Modal/Modals';
-import Spins from './components/UI/Spin/Spins';
-import TabsCustom from './components/UI/Tab/TabsCustom';
-import CarouselCustom from './components/UI/Carousel/CarouselCustom';
-import BasicAnimations from './components/Animation/BasicAnimations';
-import TableAnimation from './components/Animation/TableAnimation';
-import Echarts from './components/Charts/Echarts';
-import Recharts from './components/Charts/Recharts';
-import BasicTables from './components/Tables/BasicTables';
-import AdvancedTables from './components/Tables/AdvancedTables';
-import RemoteDataTables from './components/Tables/RemoteDataTables';
-import BasicTrees from './components/Trees/BasicTrees';
-import MenuSystem from './components/System/MenuSystemList';
-import BasicForm from './routes/form/BasicForm';
+import Buttons from './components/UI/button/Buttons';
+import Modals from './components/UI/modal/Modals';
+import Spins from './components/UI/spin/Spins';
+import TabsCustom from './components/UI/tab/TabsCustom';
+import CarouselCustom from './components/UI/carousel/CarouselCustom';
+import BasicAnimations from './components/animation/BasicAnimations';
+import TableAnimation from './components/animation/TableAnimation';
+import Echarts from './components/charts/Echarts';
+import Recharts from './components/charts/Recharts';
+import Charts from './components/charts/Charts';
+import BasicTables from './components/tables/BasicTables';
+import AdvancedTables from './components/tables/AdvancedTables';
+import RemoteDataTables from './components/tables/RemoteDataTables';
+import BasicTrees from './components/trees/BasicTrees';
+import MenuSystem from './components/system/MenuSystemList';
 import StateLifecycle from './components/StateLifecycle';
 
 const RouterConfig = ({history, app}) => {
@@ -35,33 +36,23 @@ const RouterConfig = ({history, app}) => {
                 <Route path="dashboard" component={Dashboard} />
                 <Route path="shop" component={Shop} />
                 <Route path="lifecycle" component={StateLifecycle} />
-                <Route path="form">
-                    <Route path="basicForm" component={BasicForm} />
-                </Route>
-                <Route path="ui">
-                    <Route path="icons" component={Icons} />
-                    <Route path="buttons" component={Buttons} />
-                    <Route path="modals" component={Modals} />
-                    <Route path="spins" component={Spins} />
-                    <Route path="tabs" component={TabsCustom} />
-                    <Route path="carousels" component={CarouselCustom} />
-                </Route>
-                <Route path="animation">
-                    <Route path="basicAnimations" component={BasicAnimations} />
-                    <Route path="tableAnimation" component={TableAnimation} />
-                </Route>
-                <Route path="chart">
+                <Route path="basicForm" component={BasicForm} />
+                <Route path="icons" component={Icons} />
+                <Route path="buttons" component={Buttons} />
+                <Route path="modals" component={Modals} />
+                <Route path="spins" component={Spins} />
+                <Route path="tabs" component={TabsCustom} />
+                <Route path="carousels" component={CarouselCustom} />
+                <Route path="basicAnimations" component={BasicAnimations} />
+                <Route path="tableAnimation" component={TableAnimation} />
+                <Route path="chart" component={Charts}>
                     <Route path="echarts" component={Echarts} />
                     <Route path="recharts" component={Recharts} />
                 </Route>
-                <Route path="table">
-                    <Route path="basicTable" component={BasicTables} />
-                    <Route path="advancedTable" component={AdvancedTables} />
-                    <Route path="asynchronousTable" component={RemoteDataTables} />
-                </Route>
-                <Route path="system">
-                    <Route path="menu" component={MenuSystem} />
-                </Route>
+                <Route path="basicTable" component={BasicTables} />
+                <Route path="advancedTable" component={AdvancedTables} />
+                <Route path="asynchronousTable" component={RemoteDataTables} />
+                <Route path="menu" component={MenuSystem} />
                 <Route path="tree" component={BasicTrees} />
             </Route>
             <Route path="*" component={NotFound}/>

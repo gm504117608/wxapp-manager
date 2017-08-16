@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Layout } from 'antd';
-import FooterLayout from '../FooterLayout/FooterLayout'; 
+import FooterLayout from '../footerLayout/FooterLayout'; 
 import styles from './LoginLayout.css';
 
 const {Content, Footer} = Layout;

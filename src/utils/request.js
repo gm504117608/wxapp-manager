@@ -1,17 +1,38 @@
 import fetch from 'dva/fetch';
+import { message } from 'antd';
 
+/**
+ * 获取后台返回数据
+ */
 function parseJSON(response) {
-  return response.json();
+    console.log("parseJSON(response)", response);
+
+    return response.json();
 }
 
+/**
+ * 校验调用接口返回来的转态码是否正常
+ */
 function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  }
+    if (response.status >= 200 && response.status < 300) {
+        return response;
+    }
+    const error = new Error(response.statusText);
+    error.response = response;
+    throw error;
+}
 
-  const error = new Error(response.statusText);
-  error.response = response;
-  throw error;
+/**
+ * 对后端返回数据进行处理
+ */
+function parseBackData(data) {
+    console.log("parseBackData", data);
+
+    const { code, msg, result} = data;
+    if (data.code !== 0) {
+        message.info(data.message);
+    } 
+    return data.data;
 }
 
 /**
@@ -22,12 +43,11 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
-  console.log(url);
-  console.log(options);
+    console.log("request", url, options);
 
-  return fetch(url, options)
-    .then(checkStatus)
-    .then(parseJSON)
-    .then(data => ({ data }))
-    .catch(err => ({ err }));
+    return fetch(url, options)
+      .then(checkStatus)
+      .then(parseJSON)
+      .then(data => (parseBackData(data)))
+      .catch(err => ({ err }));
 }

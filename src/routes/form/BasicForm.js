@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import BasicForm from '../../components/Form/BasicForm';
+import BasicForm from '../../components/form/BasicForm';
 
 class BasicForms extends React.Component {
     constructor(props) {

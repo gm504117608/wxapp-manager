@@ -1,94 +1,81 @@
-import { auth, register } from '../services/user';
-import { storageTokenKey } from '../utils/constant';
+import { login, register } from '../services/user';
+import { STORAGE_TOKEN_KEY, IS_LOGIN_FLAG, MSG_DURATION } from '../utils/constant';
 import { stringify } from 'qs';
 import { message } from 'antd';
-import {routerRedux} from 'dva/router';
-
+import { routerRedux } from 'dva/router';
 
 const loginModels = {
     namespace: "app",
+    
     state: {
-        isLogin: false,
-        account: {
-            userName: null,
-            ability: null,
-            user_id: null,
-            email: null
-        }
+        account: {}
     },
+
+    /* subscriptions 是订阅，用于订阅一个数据源，然后根据需要 dispatch 相应的 action。
+     * 数据源可以是当前的时间、服务器的 websocket 连接、keyboard 输入、
+     * geolocation 变化、history 路由变化等等。格式为 ({ dispatch, history }) => unsubscribe
+     */
     subscriptions: {
         setup({dispatch, history}) {
-            console.log("setup");
-            console.log(dispatch);
-            console.log(history);
-
+            // console.log("setup");
+            // console.log(dispatch);
+            // console.log(history);
         },
     },
-    effects: {
-        /* 登录 */
-        // payload 表单元素数据集合
-        *auth({payload}, {call, put, select}) {
-            console.log("login");
-            console.log("payload", payload);
-            console.log("call", call);
-            console.log("put", put);
-            console.log("select", select);
 
-            const {mobile, password} = payload;
+    effects: {
+        /* 登录 payload 表单元素数据集合 
+         */
+        *login({payload}, {call, put, select}) {
+            console.log("login ：payload ", payload);
+
+            const { mobile, password } = payload;
             try {
-                const result = yield call(auth, { mobile, password });
+                const result = yield call(login, { mobile, password });
                 console.log(result);
                 // succeed to login
                 if (result) {
-                    const {code, data} = result;
-                    const {manager, token} = data;
                     // save the token to the local storage.
-                    window.localStorage.setItem(storageTokenKey, token);
-                    yield put({
-                        type: 'authSuccess',
-                        payload: {account: manager}
-                    });
-                    dispatch(routerRedux.push('/dashboard'));
+                    window.localStorage.setItem(STORAGE_TOKEN_KEY, result);
+                    window.localStorage.setItem(IS_LOGIN_FLAG, true);
+                    yield put(routerRedux.push('/dashboard'));
                 }
             } catch (error) {
                 console.log(error);
-                message.error('Wrong Mobile or Password...', 4);
+                message.error(error.err, MSG_DURATION);
             }
         },
 
-        /* 注册 */
+        /* 
+         * 注册 
+         */
         *register({payload}, {call, put, select}) {
-            console.log("register");
-            console.log(payload);
-            console.log(call);
-            console.log(put);
-            console.log(select);
+            console.log("register payload ", payload);
 
-            const {userName, email, password} = payload;
+            const {mobile, password, confirmPassword, messageAuthCode} = payload;
             try {
-                const result = yield call(register, { userName, email, password });
+                const result = yield call(register, payload);
                 if (result) {
-                    yield put({
-                        type: 'auth',
-                        payload: {userName, password}
-                    });
+                    // save the token to the local storage.
+                    window.localStorage.setItem(STORAGE_TOKEN_KEY, result);
+                    window.localStorage.setItem(IS_LOGIN_FLAG, true);
+                    yield put(routerRedux.push('/dashboard'));
                 }
             } catch (error) {
-                message.error('Wrong userName or Password.. :(', 4);
+                console.log(error);
+                message.error(error.err, MSG_DURATION);
             }
         },
     },
+
     reducers: {
         authSuccess(state, action) {
-            console.log("save");
-            console.log(state);
-            console.log(action);
+            console.log("authSuccess:", state, action);
 
             const {account} = action.payload;
             return {
                 ...state,
-                account,
-                isLogin: true
+                account
             };
         },
     },

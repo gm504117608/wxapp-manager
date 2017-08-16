@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import DashboardLayout from '../../components/Dashboard/DashboardLayout';
+import DashboardLayout from '../../components/dashboard/DashboardLayout';
 
 class Dashboard extends Component {
 
