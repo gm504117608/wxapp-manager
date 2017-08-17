@@ -25,13 +25,30 @@ import BasicTrees from './components/trees/BasicTrees';
 import MenuSystem from './components/system/MenuSystemList';
 import StateLifecycle from './components/StateLifecycle';
 
+import { STORAGE_TOKEN_KEY, IS_LOGIN_FLAG, MSG_DURATION } from './utils/constant';
+
+/**
+ * 判断是否登录，如果没有登录跳转到登录界面，
+ */ 
+const requireLogin = (nextState, replace, callback) => {
+    console.log("nextState, replace, callback == ", nextState, replace, callback);
+
+    const isLogin = window.localStorage.getItem(IS_LOGIN_FLAG);
+    if(isLogin) {
+        callback(); //如果有值直接下一步
+    }else{
+        replace("/login"); // 如果没有登录就直接到登录页面
+        callback();
+    }
+};
+
 const RouterConfig = ({history, app}) => {
 
     return (
         <Router history={ history }>
       		<Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route path="/" component={App} >
+            <Route path="/" component={App} onEnter={requireLogin}>
                 <IndexRedirect to="dashboard" />
                 <Route path="dashboard" component={Dashboard} />
                 <Route path="shop" component={Shop} />

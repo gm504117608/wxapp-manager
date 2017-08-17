@@ -14,6 +14,8 @@ class SiderLayout extends Component {
     state = {
         collapsed: false,
         data: [],
+        current: 'dashboard',
+        openKey: []
     };
 
     // 获取服务器数据
@@ -39,6 +41,26 @@ class SiderLayout extends Component {
         this.getAllMenus();
     }
 
+    componentDidUpdate() {
+        // 获取需要展开的菜单数据
+        const { data, current } = this.state;
+        const temp = this.getOpenKeys(data, current);
+        console.log("temp = ", temp, current, data);
+    }
+
+    getOpenKeys = (data = [], current) => {
+        data.filter((item, index, array) => {
+            let children = item.children;
+            if (!children || children.length === 0) {
+                if(item.menuKey === current){
+                    return item;
+                }
+            } else {
+               this.getOpenKeys(children, current); 
+            }
+        });
+    }
+
     createChildrenMenu = (item) => {
         return (
             <Menu.SubMenu key={item.menuKey} title={<span><Icon type={item.icon} /><span>{item.name}</span></span>}>
@@ -62,14 +84,36 @@ class SiderLayout extends Component {
         return result;
     }
 
+    handleClick = (e) => {
+        console.log('Clicked: ', e);
+        this.setState({ current: e.key });
+    }
+
+    handleOpenChange = (openKeys) => {
+        console.log('handleOpenChange: ', openKeys);
+        this.setState({ openKey: openKeys });
+    }
+
+    componentWillMount(){
+        console.log("pathname", window.location.pathname);
+        let pathArray = window.location.pathname.split("/");
+        let size = pathArray.length;
+        this.setState({
+            current: pathArray[size - 1],
+        });
+    }
+
     render() {
         const { data } = this.state;
         const result = this.createMenu(data);
-        console.log("result", result);
 
         return ( 
             <Sider trigger={null} className={styles.sider} collapsible collapsed={this.state.collapsed}>
-                <Menu theme="white" mode="inline" defaultSelectedKeys={['dashboard']}>
+                <Menu theme="white" mode="inline" 
+                    selectedKeys={[this.state.current]}
+                    onClick={this.handleClick}
+                    openKeys={this.state.openKey}
+                    onOpenChange={this.handleOpenChange}>
                     { result }
                 </Menu>
             </Sider>

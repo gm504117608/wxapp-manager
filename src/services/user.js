@@ -17,10 +17,10 @@ export function register(values) {
     console.log("services register", values);
 
     return request('/api/manager/register', {
-        method: 'post',
-        headers: new Headers({
+        method: 'POST',
+        headers: {
             "Content-Type": "application/json; charset=UTF-8"
-        }),
+        },
         body: JSON.stringify({
             ...values
         })
@@ -30,13 +30,13 @@ export function register(values) {
 /*
 获取用户信息
 */
-export function fetcUser() {
+export function fetchUser() {
     const token = window.localStorage.getItem(STORAGE_TOKEN_KEY);
     return request('/api/manager', {
-        method: 'get',
-        headers: new Headers({
+        method: 'GET',
+        headers: {
             "token": `${token}`
-        })
+        }
     });
 }
 
@@ -46,10 +46,10 @@ export function fetcUser() {
 export function fetchUserDetail({user_id}) {
     const token = window.localStorage.getItem(STORAGE_TOKEN_KEY);
     return request(`/api/manager/${user_id}`, {
-        method: 'get',
-        headers: new Headers({
+        method: 'GET',
+        headers: {
             "token": `${token}`
-        })
+        }
     });
 }
 
@@ -59,11 +59,11 @@ export function fetchUserDetail({user_id}) {
 export function updateUser(values) {
     const token = window.localStorage.getItem(STORAGE_TOKEN_KEY);
     return request('/api/manager/update', {
-        method: 'post',
-        headers: new Headers({
+        method: 'POST',
+        headers: {
             "Content-Type": "application/json; charset=utf-8",
             "token": `${token}`
-        }),
+        },
         body: JSON.stringify({
             ...values
         })

@@ -88,12 +88,12 @@ class BasicTables extends React.Component {
 			<div>
 			<Row gutter={16}>
 				<Col span={12}>
-					<Card title="基础表格" border={true}>
+					<Card title="基础表格" bordered={true}>
 						<Table rowSelection={rowSelection} columns={columns} dataSource={data} size="small" />
 					</Card>
 				</Col>
 				<Col span={12}>
-					<Card title="jsx风格表格" border={true} >
+					<Card title="jsx风格表格" bordered={true} >
 						<Table dataSource={dataSource} bordered size="middle">
 						<ColumnGroup title="Name">
 							<Column title="First Name" dataIndex="firstName" key="firstName" />
@@ -116,7 +116,7 @@ class BasicTables extends React.Component {
 			</Row>
 			<Row gutter={16}>
 				<Col span={12}>
-					<Card title="可控的筛选和排序" border={true}>
+					<Card title="可控的筛选和排序" bordered={true}>
 						<FilterOrderTables />
 					</Card>
 				</Col>
