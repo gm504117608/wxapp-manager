@@ -4,3 +4,5 @@ export const STORAGE_TOKEN_KEY = 'wxapp_client_token';
 export const MSG_DURATION = 4; // 单位 秒
 // 用户是否登录标志key
 export const IS_LOGIN_FLAG = 'is_login';
+// 服务地址
+export const SERVER_URl = '';

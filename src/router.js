@@ -63,6 +63,7 @@ const RouterConfig = ({history, app}) => {
                 <Route path="basicAnimations" component={BasicAnimations} />
                 <Route path="tableAnimation" component={TableAnimation} />
                 <Route path="chart" component={Charts}>
+                    <IndexRedirect to="echarts" />
                     <Route path="echarts" component={Echarts} />
                     <Route path="recharts" component={Recharts} />
                 </Route>

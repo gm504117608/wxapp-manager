@@ -6,6 +6,7 @@ import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router';
 import styles from './SiderLayout.css';
 import reqwest from 'reqwest';
+import { SERVER_URL } from '../../utils/constant';
 
 const { Sider } = Layout;
 
@@ -14,14 +15,31 @@ class SiderLayout extends Component {
     state = {
         collapsed: false,
         data: [],
-        current: 'dashboard',
+        current: '100',
         openKey: []
     };
+
+    constructor(props){
+        super(props);
+        this.selectMenu = {};
+    }
+
+    componentWillMount(){
+        
+    }
+
+    componentDidMount() {
+        this.getAllMenus();
+    }
+
+    componentDidUpdate() {
+        
+    }
 
     // 获取服务器数据
     getAllMenus = (params = {}) => {
         reqwest({
-            url: 'http://localhost:8080/api/menu',
+            url: '/api/menu',
             method: 'get',
             type: 'json',
             data: {},
@@ -30,6 +48,26 @@ class SiderLayout extends Component {
             this.setState({
                 data: response.data,
             });
+            // 初始化界面菜单树的展示
+            this.getOpenKeys(response.data, window.location.pathname);
+            console.log("menu = ", this.selectMenu);
+            const menuKey = this.selectMenu.menuKey;
+            let length = menuKey.length;
+            let openKey = [];
+            let i = 0;
+            let j = 1;
+            while(i < length) {
+                openKey.push(menuKey.substr(0, 3*j));
+                i = i + 3;
+                j++;
+            }
+            openKey.pop();
+            console.log("openKey == ", openKey);
+            this.setState({
+                openKey: openKey, 
+                current: menuKey,
+            });
+
         }, (response, msg) => {
             console.log("error = response, msg:", response, msg);
         }).always((response) => {
@@ -37,26 +75,16 @@ class SiderLayout extends Component {
         });
     }
 
-    componentDidMount() {
-        this.getAllMenus();
-    }
-
-    componentDidUpdate() {
-        // 获取需要展开的菜单数据
-        const { data, current } = this.state;
-        const temp = this.getOpenKeys(data, current);
-        console.log("temp = ", temp, current, data);
-    }
-
-    getOpenKeys = (data = [], current) => {
-        data.filter((item, index, array) => {
+    getOpenKeys = (data = [], router) => {
+        data.find((item, index, array) => {
             let children = item.children;
             if (!children || children.length === 0) {
-                if(item.menuKey === current){
+                if(item.router === router){
+                    this.selectMenu = item;
                     return item;
-                }
+                } 
             } else {
-               this.getOpenKeys(children, current); 
+                this.getOpenKeys(children, router); 
             }
         });
     }
@@ -92,16 +120,7 @@ class SiderLayout extends Component {
     handleOpenChange = (openKeys) => {
         console.log('handleOpenChange: ', openKeys);
         this.setState({ openKey: openKeys });
-    }
-
-    componentWillMount(){
-        console.log("pathname", window.location.pathname);
-        let pathArray = window.location.pathname.split("/");
-        let size = pathArray.length;
-        this.setState({
-            current: pathArray[size - 1],
-        });
-    }
+    }  
 
     render() {
         const { data } = this.state;

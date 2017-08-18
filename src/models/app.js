@@ -7,9 +7,7 @@ import { routerRedux } from 'dva/router';
 const loginModels = {
     namespace: "app",
     
-    state: {
-        account: {}
-    },
+    state: { },
 
     /* subscriptions 是订阅，用于订阅一个数据源，然后根据需要 dispatch 相应的 action。
      * 数据源可以是当前的时间、服务器的 websocket 连接、keyboard 输入、
@@ -68,17 +66,7 @@ const loginModels = {
         },
     },
 
-    reducers: {
-        authSuccess(state, action) {
-            console.log("authSuccess:", state, action);
-
-            const {account} = action.payload;
-            return {
-                ...state,
-                account
-            };
-        },
-    },
+    reducers: { },
 
 }
 
