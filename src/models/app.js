@@ -25,12 +25,10 @@ const loginModels = {
         /* 登录 payload 表单元素数据集合 
          */
         *login({payload}, {call, put, select}) {
-            console.log("login ：payload ", payload);
 
             const { mobile, password } = payload;
             try {
                 const result = yield call(login, { mobile, password });
-                console.log(result);
                 // succeed to login
                 if (result) {
                     // save the token to the local storage.
@@ -48,8 +46,6 @@ const loginModels = {
          * 注册 
          */
         *register({payload}, {call, put, select}) {
-            console.log("register payload ", payload);
-
             const {mobile, password, confirmPassword, messageAuthCode} = payload;
             try {
                 const result = yield call(register, payload);

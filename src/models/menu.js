@@ -26,10 +26,8 @@ const menuModels = {
     effects: {
         // 获取菜单数据
         *getAllMenus({payload}, {call, put, select}) {
-            console.log("getAllMenus = ", payload);
             try {
-                const result = yield call(getAllMenus, {});
-                console.log(result);
+                const result = yield call(getAllMenus, {payload});
                 if (result) {
                     yield put({
                         type: 'getAllMenusSuccess',

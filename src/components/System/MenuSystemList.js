@@ -18,13 +18,47 @@ const columns = [{
 
 class MenuSystem extends React.Component {
 
+	queryMenus = (e) => {
+		e.preventDefault();
+    	this.props.form.validateFields((err, values) => {
+    		this.props.dispatch({
+            	type: 'getAllMenus',
+            	payload: query
+        	});
+    	});
+	}
+
 	render() {
+
+		const formItemLayout = {
+     		labelCol: { span: 5 },
+     		wrapperCol: { span: 19 },
+    	};
+
 		return (
 			<div>
 			<div style={{ padding: '20px' }}>
 			<Row gutter={16}>
 				<Col span={24}>
 					<Card bordered title="查询条件">
+					<Form layout="inline" onSubmit={this.queryMenus}>
+						<FormItem {...formItemLayout} label="菜单名称">
+							{getFieldDecorator('name')(
+              				<Input placeholder="placeholder" />
+            				)}
+						</FormItem>
+						<FormItem {...formItemLayout} label="菜单key">
+							{getFieldDecorator('menuKey')(
+              				<Input placeholder="placeholder" />
+            				)}
+						</FormItem>
+						<FormItem {...formItemLayout} label="路由">
+							{getFieldDecorator('router')(
+              				<Input placeholder="placeholder" />
+            				)}
+						</FormItem>
+						<Button type="primary" htmlType="submit">查询</Button>
+					</Form>
 					</Card>
 				</Col>
 			</Row>

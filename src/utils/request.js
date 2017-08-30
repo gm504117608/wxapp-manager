@@ -6,7 +6,6 @@ import { message } from 'antd';
  */
 function parseJSON(response) {
     console.log("parseJSON(response)", response);
-
     return response.json();
 }
 
@@ -27,8 +26,6 @@ function checkStatus(response) {
  */
 function parseBackData(data) {
     console.log("parseBackData", data);
-
-    const { code, msg, result} = data;
     if (data.code !== 0) {
         message.info(data.message);
     } 
@@ -44,7 +41,6 @@ function parseBackData(data) {
  */
 export default function request(url, options) {
     console.log("request", url, options);
-
     return fetch(url, options)
       .then(checkStatus)
       .then(parseJSON)

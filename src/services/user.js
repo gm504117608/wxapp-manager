@@ -5,8 +5,6 @@ import { STORAGE_TOKEN_KEY } from '../utils/constant';
  * 登录
  */
 export function login(values) {
-    console.log("services login", values);
-
     return request('/api/login?mobile=' + values.mobile + '&password=' + values.password);
 }
 
@@ -14,8 +12,6 @@ export function login(values) {
  * 注册
  */
 export function register(values) {
-    console.log("services register", values);
-
     return request('/api/manager/register', {
         method: 'POST',
         headers: {
